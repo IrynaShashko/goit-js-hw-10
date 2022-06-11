@@ -18,3 +18,27 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+.country-list__item{
+  list-style: none;
+}
+.country-list__link{
+  color: #212121;
+  text-decoration: none;
+}
+.card{
+  border-radius: 20px;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
+    0 3px 2px -2px rgba(0, 0, 0, 0.2);
+  margin-bottom: 16px;
+  padding: 16px;
+  background-color: rgb(236, 208, 236);
+  width: 400px;
+}
+.wrapper{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.flag{
+margin-right: 20px;
+}
