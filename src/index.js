@@ -33,8 +33,38 @@ function onSearch(event) {
         refs.countriesList.innerHTML = '';
       }
     })
-    .catch(error => console.log(error))
-}
+    .catch(error => {
+      if (error.status === 404) {
+        Notify.error(`No matches found.`);
+      }
+    })
+  }
+  
+
+
+// function onSearch(event) {
+//   const inputValue = event.target.value;
+//   if (inputValue.length < 2) {
+//     Notify.info(`Too many matches found. Please enter a more specific name.`);
+//   };
+//   fetchCountryByName(inputValue)
+//     .then(country => {
+//       if (country.length > 3) {
+//         renderCountryList(country);
+//         console.log(country);
+//         return country;
+//       }
+//     })
+//     .then(country => {
+//       renderCountryCard(country.name.official);
+//       console.log(inputValue.includes(country.name.official));
+//       refs.countriesList.innerHTML = '';
+//     }).catch(error => {
+//       if(error.status === 404) {
+//         Notify.error(`No matches found.`);
+//       }
+//     })
+// }
 
 function renderCountryList (data) {
   data.map(country => {
