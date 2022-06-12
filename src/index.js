@@ -21,50 +21,37 @@ refs.searchInput.addEventListener('input', debounce(onSearch, DEBOUNCE_DELAY));
 
 function onSearch(event) {
   const inputValue = event.target.value;
-  if (inputValue.length < 2) {
-    Notify.info(`Too many matches found. Please enter a more specific name.`);
-  };
+
   fetchCountryByName(inputValue)
     .then(country => {
-      if (country.length >= 2) {
+      if (country.message === 'Page Not Found') {
+        refs.countriesList.innerHTML = '';
+        refs.countriesInfo.innerHTML = '';
+      }
+      console.log(country);
+      if (inputValue.length > 0 && inputValue.length < 2) {
+        Notify.info(`Too many matches found. Please enter a more specific name.`);
+        return;
+      };
+      if (country.status === 404) {
+        Notify.failure(`Oops, there is no country with that name`);
+        refs.countriesList.innerHTML = '';
+        refs.countriesInfo.innerHTML = '';
+        return;
+      }
+      if (country.length > 2) {
+        console.log(country);
         renderCountryList(country);
+          
       } else {
         renderCountryCard(country[0]);
         refs.countriesList.innerHTML = '';
       }
     })
     .catch(error => {
-      if (error.status === 404) {
-        Notify.error(`No matches found.`);
-      }
+      console.log(error);
     })
-  }
-  
-
-
-// function onSearch(event) {
-//   const inputValue = event.target.value;
-//   if (inputValue.length < 2) {
-//     Notify.info(`Too many matches found. Please enter a more specific name.`);
-//   };
-//   fetchCountryByName(inputValue)
-//     .then(country => {
-//       if (country.length > 3) {
-//         renderCountryList(country);
-//         console.log(country);
-//         return country;
-//       }
-//     })
-//     .then(country => {
-//       renderCountryCard(country.name.official);
-//       console.log(inputValue.includes(country.name.official));
-//       refs.countriesList.innerHTML = '';
-//     }).catch(error => {
-//       if(error.status === 404) {
-//         Notify.error(`No matches found.`);
-//       }
-//     })
-// }
+}
 
 function renderCountryList (data) {
   data.map(country => {
