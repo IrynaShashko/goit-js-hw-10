@@ -18,6 +18,16 @@ body {
   max-width: 320px;
   margin-bottom: 16px;
 }
+.country-input{
+  padding-top: 50px;
+  padding-bottom: 10px;
+  padding-left: 120px;
+  justify-content: center;
+}
+.country-info{
+  padding: 0px 20px;
+  justify-content: center;
+}
 .country-list__item{
   list-style: none;
 }
@@ -30,7 +40,7 @@ body {
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12),
     0 3px 2px -2px rgba(0, 0, 0, 0.2);
   margin-bottom: 16px;
-  padding: 16px;
+  padding: 20px;
   background-color: rgb(236, 208, 236);
   width: 400px;
 }
